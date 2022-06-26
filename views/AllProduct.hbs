@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    h3 {
+        color:rgb(210, 22, 179);
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 20px;
+        background: linear-gradient(to right, rgb(0,249,216) 50%, rgb(24,176,247) 100%);
+        margin-left: 550px;
+        margin-right: 430px;
+        border-radius: 30px;
+    }
+    body {
+        background-image: url(https://wallpaperaccess.com/full/187161.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <div class="container-fluid">
+    <button class="btn btn-secondary"><a class="navbar-brand" href="/" style="color: yellowgreen; font-weight:bold; font-size: 20px">Home Page</a></button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+        <li class="nav-item">
+          <button class="btn btn-secondary"><a class="nav-link active" aria-current="page" href="/create" style="color: yellowgreen; font-weight:bold; font-size: 20px;">Add Product</a></button>
+        </li>
+        <form action="/ascending" method="post">
+        <li class="nav-item" >
+          <button name="txtPrice" class="btn btn-secondary"><a class="nav-link" style="color: yellowgreen; font-weight:bold; font-size: 20px;">Sort Price Ascending</a></button>
+        </li>
+        </form>
+        <form action="/decrease" method="post">
+        <li class="nav-item">
+          <button name="txtPrice" class="btn btn-secondary"><a class="nav-link" style="color: yellowgreen; font-weight:bold; font-size: 20px;">Sort Price Decrease</a></button>
+        </li>
+        </form>
+      </ul>
+      <form class="d-flex" action="/search" method="post">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="txtName">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+    <h3>All Product</h3>
+    <hr>
+    <table class="table table-bordered table-warning border-bold" style="margin-top: 50px;">
+  <thead class="thread-dark">
+    <tr class="table-primary border-info-bold" style="font-size: 20px;">
+      <th style="text-align: center;" scope="col">Name</th>
+      <th style="text-align: center;" scope="col">Price ($)</th>
+      <th style="text-align: center;" scope="col">Description</th>
+      <th style="text-align: center;" scope="col">Image</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each product}} 
+    <tr style="font-size: 20px; color:black; background-color: transparent">
+        <td style="padding-top: 70px; font-size: 20px; text-align:center">{{name}}</td>
+        <td style="padding-top: 70px; font-size: 20px; text-align:center">{{price}}</td>
+        <td style="padding-top: 70px; font-size: 20px; text-align:center">{{description}}</td>
+        <td style="font-size: 20px; text-align:center"><img src="{{image}}" width="300" height="300"></td>
+        <td style="text-align: center; padding-top:80px">
+            <a href="/update?id={{_id}}" type="button" class="btn btn-success btn-sm" style="font-size: 20px; padding: 10px"><b>EDIT</b></a>
+        </td>
+        <td style="text-align: center; padding-top:80px">
+            <a href="/delete?id={{_id}}" onclick="return confirm('Are you sure delete this product')" type="button" class="btn btn-danger btn-sm" style="font-size: 20px; padding: 10px"><b>DELETE</b></a>
+        </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</body>
+</html>
