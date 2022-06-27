@@ -121,6 +121,7 @@ app.post('/updateProduct', async(req,res)=>{
     res.redirect('/viewAll')
 })
 
+
 app.get('/viewAll', async(req,res)=>{
     let client = await MongoClient.connect(url)
     let dbo = client.db("MuStore")
